@@ -1,0 +1,18 @@
+<p-table [value]="warehouses" [paginator]="true" [rows]="5">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Location</th>
+      <th>Capacity</th>
+      <th>Available Units</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-warehouse>
+    <tr>
+      <td>{{ warehouse.id }}</td>
+      <td>{{ warehouse.location }}</td>
+      <td>{{ warehouse.capacity }}</td>
+      <td>{{ warehouse.availableSpace }}</td>
+    </tr>
+  </ng-template>
+</p-table>
