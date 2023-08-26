@@ -1,4 +1,10 @@
-<p-table [value]="products" [paginator]="true" [rows]="5">
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+      <p-button label="Add Product" icon="pi pi-plus" class="mr-2" (click)="showAddModal()"></p-button>
+  </div>
+  
+</p-toolbar>
+<p-table [value]="products" [paginator]="true" [rows]="10" selectionMode="single">
   <ng-template pTemplate="header">
     <tr>
       <th>Name</th>
@@ -6,6 +12,7 @@
       <th>Description</th>
       <th>Quantity</th>
       <th>Warehouse Location</th>
+      <th>Action</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
@@ -14,7 +21,17 @@
       <td>{{ product.price }}</td>
       <td>{{ product.description }}</td>
       <td>{{ product.quantity }}</td>
-      <td>{{ product.warehouseId.location }}</td>
+      <td>{{ product.warehouseId?.location }}</td>
+      <td>
+        <p-button icon="pi pi-times" styleClass="p-button-danger" (click)="deleteProduct(product)"></p-button>
+      </td>
     </tr>
   </ng-template>
 </p-table>
+<product-form
+  [displayAddModal]="displayAddModal"
+  (clickClose)="hideAddModal($event)"
+  (clickAdd)="saveProductToList($event)"
+></product-form>
+<p-confirmDialog header="Delete"></p-confirmDialog>
+<p-toast position="bottom-right"></p-toast>

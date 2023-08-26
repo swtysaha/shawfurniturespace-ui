@@ -1,0 +1,62 @@
+<p-dialog
+  header="Add Warehouse"
+  [(visible)]="displayAddModal"
+  [modal]="true"
+  [style]="{ width: '25vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  (onHide)="closeModal()"
+>
+  <form [formGroup]="warehouseForm" class="warehouse-form">
+    <div class="field">
+      <label class="block" for="location">Location</label>
+      <input type="text" pInputText id="location" formControlName="location" />
+      <small
+        class="p-error block"
+        *ngIf="
+          warehouseForm.controls['location'].invalid &&
+          warehouseForm.controls['location'].dirty
+        "
+        >Field is required</small
+      >
+    </div>
+    <div class="field">
+      <label class="block" for="capacity">Capacity</label>
+      <p-inputNumber id="capacity" formControlName="capacity" class="block"></p-inputNumber>
+      <small
+        class="p-error block"
+        *ngIf="
+          warehouseForm.controls['capacity'].invalid &&
+          warehouseForm.controls['capacity'].dirty
+        "
+        >Field is required</small
+      >
+    </div>
+   
+    <div class="field">
+      <label class="block" for="availableSpace">Availability</label>
+      <p-inputNumber id="availableSpace" formControlName="availableSpace" class="block"></p-inputNumber>
+      <small
+        class="p-error block"
+        *ngIf="
+          warehouseForm.controls['availableSpace'].invalid &&
+          warehouseForm.controls['availableSpace'].dirty
+        "
+        >Field is required</small
+      >
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button
+      (click)="closeModal()"
+      label="Cancel"
+      styleClass="p-button-text"
+    ></p-button>
+
+    <p-button
+      (click)="addWarehouse()"
+      label="Add"
+      [disabled]="warehouseForm.invalid"
+    ></p-button>
+  </ng-template>
+</p-dialog>

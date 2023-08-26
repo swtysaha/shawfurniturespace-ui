@@ -7,6 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { ProductModule } from './product/product.module';
 import { WarehouseModule } from './warehouse/warehouses.module'; 
+import { TabViewModule } from 'primeng/tabview';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +25,11 @@ import { WarehouseModule } from './warehouse/warehouses.module';
     BrowserAnimationsModule,
     TableModule,
     ProductModule,
-    WarehouseModule
+    WarehouseModule,
+    TabViewModule,
+    ToolbarModule,
+    ButtonModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
