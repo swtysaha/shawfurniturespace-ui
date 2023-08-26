@@ -1,6 +1,6 @@
 <p-dialog
-  header="Add Warehouse"
-  [(visible)]="displayAddModal"
+  header="{{ modalType }} Warehouse"
+  [(visible)]="displayAddEditModal"
   [modal]="true"
   [style]="{ width: '25vw' }"
   [draggable]="false"
@@ -54,8 +54,8 @@
     ></p-button>
 
     <p-button
-      (click)="addWarehouse()"
-      label="Add"
+      (click)="addEditWarehouse()"
+      label="{{ modalType }}"
       [disabled]="warehouseForm.invalid"
     ></p-button>
   </ng-template>

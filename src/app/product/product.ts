@@ -1,10 +1,11 @@
 export interface Product {
-    productId: number;
+   
     name: string;
-    description: string;
     price: number;
+    description: string;
     quantity: number;
     warehouseId: Warehouses;
+    productId: number;
 }
 
 interface RatingProps {

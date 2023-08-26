@@ -14,9 +14,19 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('http://localhost:8080/product/all');
   }
-  saveProduct(postData: any) {
-    return this.http.post('http://localhost:8080/product/store', postData );
+ 
+  saveProduct(postData: any, selectedPdt: any) {
+    if (!selectedPdt) {
+      return this.http.post('http://localhost:8080/product/store', postData );
+    } else {
+      postData.productId = selectedPdt.productId
+      console.log(postData)
+      return this.http.put('http://localhost:8080/product/update', postData);
+    }
+
   }
+
+
   deleteProduct(productId: any) {
     let url = 'http://localhost:8080/product/id/'+ productId;
     return this.http.delete(url);

@@ -21,17 +21,21 @@
       <td>{{ product.price }}</td>
       <td>{{ product.description }}</td>
       <td>{{ product.quantity }}</td>
-      <td>{{ product.warehouseId?.location }}</td>
+      <td>{{ product.warehouseId?.id }}</td>
       <td>
+        <div class="p-toolbar-group-start">
+        <p-button label="Edit" class="mr-2" (click)="showEditModal(product)"></p-button>
         <p-button icon="pi pi-times" styleClass="p-button-danger" (click)="deleteProduct(product)"></p-button>
+      </div>
       </td>
     </tr>
   </ng-template>
 </p-table>
 <product-form
-  [displayAddModal]="displayAddModal"
-  (clickClose)="hideAddModal($event)"
-  (clickAdd)="saveProductToList($event)"
+[displayAddEditModal]="displayAddEditModal"
+[selectedProduct]="selectedProduct"
+(clickClose)="hideAddModal($event)"
+(clickAddEdit)="saveorUpdateProductList($event)"
 ></product-form>
 <p-confirmDialog header="Delete"></p-confirmDialog>
 <p-toast position="bottom-right"></p-toast>

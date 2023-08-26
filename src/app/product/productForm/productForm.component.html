@@ -1,6 +1,6 @@
 <p-dialog
-  header="Add Product"
-  [(visible)]="displayAddModal"
+  header="{{ modalType }} Product"
+  [(visible)]="displayAddEditModal"
   [modal]="true"
   [style]="{ width: '25vw' }"
   [draggable]="false"
@@ -36,6 +36,19 @@
       <label class="block">Description</label>
       <textarea pInputTextarea formControlName="description"></textarea>
     </div>
+    
+    <div class="field">
+      <label class="block" for="warehouseId">Warehouse Code</label>
+      <p-inputNumber id="warehouseId" formControlName="warehouseId" class="block"></p-inputNumber>
+      <small
+        class="p-error block"
+        *ngIf="
+          productForm.controls['warehouseId'].invalid &&
+          productForm.controls['warehouseId'].dirty
+        "
+        >Field is required</small
+      >
+    </div>
     <div class="field">
       <label class="block" for="quantity">Quantity</label>
       <p-inputNumber id="quantity" formControlName="quantity" class="block"></p-inputNumber>
@@ -44,18 +57,6 @@
         *ngIf="
           productForm.controls['quantity'].invalid &&
           productForm.controls['quantity'].dirty
-        "
-        >Field is required</small
-      >
-    </div>
-    <div class="field">
-      <label class="block" for="warehouseId">Location</label>
-      <p-inputNumber id="warehouseId" formControlName="warehouseId" class="block"></p-inputNumber>
-      <small
-        class="p-error block"
-        *ngIf="
-          productForm.controls['warehouseId'].invalid &&
-          productForm.controls['warehouseId'].dirty
         "
         >Field is required</small
       >
@@ -69,8 +70,8 @@
     ></p-button>
 
     <p-button
-      (click)="addProduct()"
-      label="Add"
+      (click)="addEditProduct()"
+      label="{{ modalType }}"
       [disabled]="productForm.invalid"
     ></p-button>
   </ng-template>
