@@ -75,12 +75,15 @@ export class ProductComponent implements OnInit , OnDestroy{
         this.productService.deleteProduct(product.productId).subscribe(
           response => {
            // this.products = this.products.filter(data =>{console.log(data.productId); data.productId !== product.productId});
-           
+           console.log("Success");
+           console.log(response);
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Deleted Successfully' });
             this.getProductList();
           },
           error => {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+            console.log("Error");
+            console.log(error);
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error });
           }
         )
       }

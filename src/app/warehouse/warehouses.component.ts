@@ -69,9 +69,10 @@ export class WarehouseComponent implements OnInit {
 
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Deleted Successfully' });
             // this.router.navigate(['product']);
+            this.getWareHouseList();
           },
           error => {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error });
           }
         )
       }

@@ -54,8 +54,9 @@ export class WarehouseFormComponent implements OnInit ,OnChanges{
         this.messageService.add({ severity: 'success', summary: 'Success', detail: msg });
       },
       error => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
-        console.log('Errror occured');
+        console.log(error);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error });
+        console.log('Errror occured'+error.error);
       }
     )
   }

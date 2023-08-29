@@ -90,7 +90,7 @@ export class ProductFormComponent implements OnInit,OnChanges {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: msg });
       },
       error => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error });
         console.log('Errror occured');
       }
     )
