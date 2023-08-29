@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from './product';
 import { ProductService } from './product.service';
+import { WarehouseService } from '../warehouse/warehouses.service';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { Warehouses } from '../warehouse/warehouses';
 
 @Component({
   selector: 'app-product',
@@ -16,8 +18,9 @@ export class ProductComponent implements OnInit , OnDestroy{
   displayAddEditModal = false;
   selectedProduct: any = null;
   subscriptions: Subscription[] = [];
+  warehouses: Warehouses[] = [];
   pdtSubscription: Subscription = new Subscription();
-  constructor(private productService: ProductService,private confirmationService: ConfirmationService,private messageService: MessageService,private router: Router) { }
+  constructor(private warehouseService:WarehouseService,private productService: ProductService,private confirmationService: ConfirmationService,private messageService: MessageService,private router: Router) { }
 
   ngOnInit(): void {
     this.getProductList();
@@ -34,6 +37,11 @@ export class ProductComponent implements OnInit , OnDestroy{
   showAddModal() {
     this.displayAddEditModal = true;
     this.selectedProduct = null;
+    this.warehouseService.getWarehouses().subscribe(
+      response => {
+        this.warehouses = response;
+      }
+    );
   }
 
   hideAddModal(isClosed: boolean) {
@@ -43,6 +51,7 @@ export class ProductComponent implements OnInit , OnDestroy{
   saveorUpdateProductList(newData: any) {
     if (this.selectedProduct && newData.id === this.selectedProduct.productId) {
       const productIndex = this.products.findIndex(data => data.productId === newData.productId);
+      console.log(newData);
       this.products[productIndex] = newData;
       
     } else {

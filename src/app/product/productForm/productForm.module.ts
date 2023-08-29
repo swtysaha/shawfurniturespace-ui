@@ -8,6 +8,8 @@ import {DialogModule, Dialog} from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ListboxModule } from 'primeng/listbox';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ButtonModule,
     ReactiveFormsModule,
     InputTextModule,
-    InputNumberModule
+    InputNumberModule,
+    ListboxModule,
+    TableModule
       
   ],
   exports: [

@@ -20,6 +20,7 @@ export class ProductService {
       return this.http.post('http://localhost:8080/product/store', postData );
     } else {
       postData.productId = selectedPdt.productId
+      postData.warehouseId = selectedPdt.warehouseId.id;
       console.log(postData)
       return this.http.put('http://localhost:8080/product/update', postData);
     }
