@@ -82,18 +82,23 @@ export class ProductFormComponent implements OnInit,OnChanges {
   }
 
   addEditProduct() {
-    this.productService.saveProduct(this.productForm.value, this.selectedProduct).subscribe(
-      response => {
-        this.clickAddEdit.emit(response);
-        this.closeModal();
-        const msg = this.modalType === 'Add' ? 'Product added' : 'Product updated';
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: msg });
-      },
-      error => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error });
-        console.log('Errror occured');
-      }
-    )
+    console.log(this.productForm.value.warehouseId);
+    if(this.productForm.value.warehouseId == null){
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please select warehouse'});
+    }else{
+      this.productService.saveProduct(this.productForm.value, this.selectedProduct).subscribe(
+        response => {
+          this.clickAddEdit.emit(response);
+          this.closeModal();
+          const msg = this.modalType === 'Add' ? 'Product added' : 'Product updated';
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: msg });
+        },
+        error => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error });
+          console.log('Errror occured');
+        }
+      )
+    }
   }
 
 }

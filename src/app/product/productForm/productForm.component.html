@@ -32,15 +32,13 @@
     </div>
 
   </form>
+  <!-- For showing warhouse details for specific product -->
   <ng-container *ngIf="!isAdd()">
   <form [formGroup]="warehouseForm" class="product-form">
     <div class="field">
       <label class="block" for="id">Warehouse Code</label>
-      <p-inputNumber id="id" formControlName="id" class="block"></p-inputNumber>
-      <small class="p-error block" *ngIf="
-        warehouseForm.controls['id'].invalid &&
-        warehouseForm.controls['id'].dirty
-        ">Field is required</small>
+      <p-inputNumber id="id" formControlName="id" [readonly]="true" class="block"></p-inputNumber>
+    
     </div>
   </form>
 </ng-container>
@@ -48,7 +46,7 @@
   <form [formGroup]="warehouseListForm" class="product-form">
     <div class="field">
 
-        <p-table [value]="warehousesFromParent" selectionMode="single" (onRowSelect)="onWareHouseSelection($event)" >
+        <p-table [value]="warehousesFromParent" required=true selectionMode="single" (onRowSelect)="onWareHouseSelection($event)" >
           <ng-template pTemplate="header">
             <tr>
               <th>Id</th>

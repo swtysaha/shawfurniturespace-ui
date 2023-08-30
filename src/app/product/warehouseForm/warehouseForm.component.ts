@@ -39,6 +39,11 @@ export class WarehouseFormComponent implements OnInit ,OnChanges{
     }
   }
 
+  public isAdd(){
+    let value = this.modalType === 'Add';
+    return value;
+  }
+  
   closeModal() {
     this.warehouseForm.reset();
     this.clickClose.emit(true);
