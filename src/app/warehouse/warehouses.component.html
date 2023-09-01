@@ -1,3 +1,9 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+      <p-button label="Add Warehouse" icon="pi pi-plus" class="mr-2" (click)="showAddModal()"></p-button>
+  </div>
+  
+</p-toolbar>
 <p-table [value]="warehouses" [paginator]="true" [rows]="5">
   <ng-template pTemplate="header">
     <tr>
@@ -5,6 +11,7 @@
       <th>Location</th>
       <th>Capacity</th>
       <th>Available Units</th>
+      <th>Action</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-warehouse>
@@ -13,6 +20,20 @@
       <td>{{ warehouse.location }}</td>
       <td>{{ warehouse.capacity }}</td>
       <td>{{ warehouse.availableSpace }}</td>
+      <td>
+        <div class="p-toolbar-group-start">
+        <p-button label="Edit" class="mr-2" (click)="showEditModal(warehouse)"></p-button>
+        <p-button icon="pi pi-times" styleClass="p-button-danger" (click)="deleteWarehouse(warehouse)"></p-button>
+        </div>
+      </td>
     </tr>
   </ng-template>
 </p-table>
+<warehouse-form
+[displayAddEditModal]="displayAddEditModal"
+[selectedWarehouse]="selectedWarehouse"
+(clickClose)="hideAddModal($event)"
+(clickAddEdit)="saveorUpdateWarehouseList($event)"
+></warehouse-form>
+<p-confirmDialog header="Delete"></p-confirmDialog>
+<p-toast position="bottom-right"></p-toast>
